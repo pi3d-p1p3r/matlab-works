@@ -1,0 +1,14 @@
+k1 = 3;
+k2 = 0.002;
+k3 = 0.0006;
+k4 = 0.5;
+x1_0 = 1000;
+x2_0 = 500;
+tspan = [0 4];
+ode = @(t, x) [k1*x(1) - k2*x(1)*x(2); k3*x(1)*x(2) - k4*x(2)];
+[t, populations] = ode45(ode, tspan, [x1_0, x2_0]);
+plot(t, populations(:, 1), 'b', t, populations(:, 2), 'r');
+xlabel('Time');
+ylabel('Population');
+legend('Prey (x1)', 'Predator (x2)');
+title('Population Dynamics of Predator-Prey System');
